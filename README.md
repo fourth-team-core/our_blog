@@ -28,6 +28,7 @@ poetry init
 
 
 ### Run the project (basic run)
+- copy `blog/.env.temlpate` file and rename to just `.env` 
 - go to blog directory and run
 ```
 python manage.py runserver
