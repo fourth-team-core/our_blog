@@ -1,0 +1,10 @@
+[flake8]
+max_line_length = 79
+max_complexity = 12
+exclude =
+    .git,
+    __pycache__,
+    .idea,
+    venv,
+    settings.py,
+    migrations
