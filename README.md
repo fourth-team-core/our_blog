@@ -1,4 +1,5 @@
-# Our blog - Simple study project
+# Team 4 blog
+### GB diploma project MVP
 
 
 ## Installation ##
