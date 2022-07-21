@@ -83,6 +83,10 @@ class Tag(models.Model):
 
 
 class Post(models.Model):
+    STATUS_CHOICES = {
+        ('draft', 'Draft'),
+        ('published', 'Published'),
+    }
     author = models.ForeignKey(
         BlogUser,
         on_delete=models.RESTRICT,
@@ -113,9 +117,22 @@ class Post(models.Model):
         Tag,
         related_name='post_tags',
     )
-    published = models.DateTimeField()
+    status = models.CharField(
+        max_length=10,
+        choices=STATUS_CHOICES,
+        default='draft',
+    )
+    likes_count = models.BigIntegerField(default=0)
+    published_at = models.DateTimeField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = 'posts'
+        ordering = ('-published_at',)
+
+    def __str__(self):
+        return f'{self.title}'
 
 
 class Comment(models.Model):
@@ -144,10 +161,23 @@ class Comment(models.Model):
         verbose_name='content',
         null=False,
     )
-    published = models.DateTimeField()
+    published_at = models.DateTimeField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        db_table = 'comments'
+
+    def __str__(self):
+        return f'{self.post} - {self.content}'
+
 
 class Like(models.Model):
-    pass
+    post = models.ForeignKey(
+        Post,
+        on_delete=models.RESTRICT,
+    )
+    author = models.ForeignKey(
+        BlogUser,
+        on_delete=models.RESTRICT,
+    )
