@@ -43,16 +43,27 @@ class BlogUserProfile(models.Model):
 
 
 class PostCategory(models.Model):
-    pass
+    url = models.URLField(
+        verbose_name='category url',
+    )
+    name = models.CharField(
+        max_length=64,
+        verbose_name='category name',
+        unique=True,
+    )
 
+    class Meta:
+        db_table = 'post_categories'
+        verbose_name = 'post category'
+        verbose_name_plural = 'post categories'
 
-class Post(models.Model):
-    pass
+    def __str__(self):
+        return f'{self.name}'
 
 
 class Tag(models.Model):
     url = models.URLField(
-        verbose_name='url',
+        verbose_name='tag url',
     )
     name = models.CharField(
         verbose_name='tag name',
@@ -71,8 +82,71 @@ class Tag(models.Model):
         return f'{self.name}'
 
 
+class Post(models.Model):
+    author = models.ForeignKey(
+        BlogUser,
+        on_delete=models.RESTRICT,
+        verbose_name='post author',
+    )
+    # TODO: принять решение - в нашем случае может ли пост относится к разным
+    #  категориям одновременно? Если да, то нужно many-to-many field
+    category = models.ForeignKey(
+        PostCategory,
+        on_delete=models.RESTRICT,
+        verbose_name='post category',
+    )
+    title = models.CharField(
+        max_length=128,
+        verbose_name='post title',
+        null=False,
+    )
+    url = models.URLField(
+        verbose_name='post url',
+        null=False,
+        unique=True,
+    )
+    content = models.TextField(
+        verbose_name='content',
+        null=False,
+    )
+    tags = models.ManyToManyField(
+        Tag,
+        related_name='post_tags',
+    )
+    published = models.DateTimeField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+
 class Comment(models.Model):
-    pass
+    author = models.ForeignKey(
+        BlogUser,
+        on_delete=models.RESTRICT,
+        verbose_name='post author',
+    )
+    # TODO: принять решение - в нашем случае может ли пост относится к разным
+    #  категориям одновременно? Если да, то нужно many-to-many field
+    post = models.ForeignKey(
+        Post,
+        on_delete=models.RESTRICT,
+        verbose_name='post',
+    )
+    parent_id = models.BigIntegerField(
+        verbose_name='parent id',
+        null=False,
+    )
+    url = models.URLField(
+        verbose_name='post url',
+        null=False,
+        unique=True,
+    )
+    content = models.TextField(
+        verbose_name='content',
+        null=False,
+    )
+    published = models.DateTimeField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
 
 class Like(models.Model):
