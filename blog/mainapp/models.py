@@ -3,18 +3,25 @@ from django.db import models
 
 
 class Company(models.Model):
-    pass
+    name = models.CharField(
+        max_length=64,
+        verbose_name='company name',
+        unique=True,
+    )
+    url = models.URLField(
+        verbose_name='company url',
+    )
 
 
 class BlogUser(AbstractUser):
-    avatar = models.ImageField(
-        verbose_name='avatar',
-        upload_to='',
-        blank=True,
+    company = models.ForeignKey(
+        Company,
+        on_delete=models.RESTRICT,
+        verbose_name='company'
     )
-    age = models.PositiveIntegerField(
-        verbose_name='age',
-    )
+    is_admin = models.BooleanField(default=False)
+    is_author = models.BooleanField(default=False)
+    is_moderator = models.BooleanField(default=False)
     is_deleted = models.BooleanField(default=False)
     created_at = models.DateTimeField(
         auto_now_add=True,
@@ -34,12 +41,42 @@ class BlogUser(AbstractUser):
 
 
 class BlogUserProfile(models.Model):
+    GENDER_CHOICES = (
+        ('M', 'М'),
+        ('F', 'Ж'),
+    )
     user = models.OneToOneField(
         BlogUser,
         on_delete=models.RESTRICT,
         unique=True,
     )
-    # TODO: нужен ли отдельный класс или достаточно расширение абстрактного?
+    avatar = models.ImageField(
+        verbose_name='avatar',
+        upload_to='',
+        blank=True,
+    )
+    age = models.PositiveIntegerField(
+        verbose_name='age',
+    )
+    gender = models.CharField(
+        verbose_name='gender',
+        max_length=1,
+        choices=GENDER_CHOICES,
+        blank=True,
+    )
+    about = models.TextField(
+        verbose_name='about me',
+        max_length=512,
+        blank=True,
+    )
+
+    class Meta:
+        db_table = 'blog_user_profiles'
+        verbose_name = 'blog user profile'
+        verbose_name_plural = 'blog user profiles'
+
+    def __str__(self):
+        return f'{self.user} {self.age}'
 
 
 class PostCategory(models.Model):
@@ -66,6 +103,7 @@ class Tag(models.Model):
         verbose_name='tag url',
     )
     name = models.CharField(
+        max_length=10,
         verbose_name='tag name',
         null=False,
     )
@@ -92,8 +130,6 @@ class Post(models.Model):
         on_delete=models.RESTRICT,
         verbose_name='post author',
     )
-    # TODO: принять решение - в нашем случае может ли пост относится к разным
-    #  категориям одновременно? Если да, то нужно many-to-many field
     category = models.ForeignKey(
         PostCategory,
         on_delete=models.RESTRICT,
@@ -141,8 +177,6 @@ class Comment(models.Model):
         on_delete=models.RESTRICT,
         verbose_name='post author',
     )
-    # TODO: принять решение - в нашем случае может ли пост относится к разным
-    #  категориям одновременно? Если да, то нужно many-to-many field
     post = models.ForeignKey(
         Post,
         on_delete=models.RESTRICT,
