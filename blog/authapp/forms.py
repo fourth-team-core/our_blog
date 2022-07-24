@@ -10,6 +10,10 @@ class BlogUserCreationForm(UserCreationForm):
         model = BlogUser
         fields = ('first_name', 'last_name', 'username', 'email',)
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['email'].required = True
+
 
 class BlogUserChangeForm(UserChangeForm):
 

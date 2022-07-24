@@ -64,8 +64,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, 'templates'),
-            os.path.join(BASE_DIR, 'templates', 'authapp'),
+            os.path.join(BASE_DIR, 'templates/'),
             ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -143,5 +142,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'authapp.BlogUser'
 
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = '/auth/profile'
 LOGOUT_REDIRECT_URL = 'home'

@@ -7,5 +7,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
     path('auth/', include('authapp.urls')),
-    path('auth/', include('django.contrib.auth.urls')),
 ]

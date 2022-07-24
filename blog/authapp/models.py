@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.db.models.signals import post_save
+from django.core.exceptions import ObjectDoesNotExist
 
 
 class BlogUser(AbstractUser):
@@ -23,7 +25,7 @@ class BlogUser(AbstractUser):
         verbose_name_plural = 'blog users'
 
     def __str__(self):
-        return self.get_full_name()
+        return self.username
 
 
 class BlogUserProfile(models.Model):
@@ -42,6 +44,8 @@ class BlogUserProfile(models.Model):
     )
     age = models.PositiveIntegerField(
         verbose_name='age',
+        null=True, 
+        blank=True,
     )
     about = models.TextField(
         verbose_name='about me',
@@ -54,4 +58,17 @@ class BlogUserProfile(models.Model):
         verbose_name_plural = 'blog user profiles'
 
     def __str__(self):
-        return self.user
+        return self.user.username
+
+
+    def create_profile(sender, instance, created, **kwargs):
+        try:
+            instance.bloguserprofile.save()
+        except ObjectDoesNotExist:
+            BlogUserProfile.objects.create(user=instance)
+
+    def save_profile(sender, instance, **kwargs):
+        instance.bloguserprofile.save()
+
+    post_save.connect(create_profile, sender=BlogUser)
+    post_save.connect(save_profile, sender=BlogUser)

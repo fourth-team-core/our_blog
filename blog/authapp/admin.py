@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
 
 from .forms import BlogUserCreationForm, BlogUserChangeForm
-from .models import BlogUser
+from .models import BlogUser, BlogUserProfile
 
 class BlogUserAdmin(UserAdmin):
     add_form = BlogUserCreationForm
@@ -43,4 +43,5 @@ class BlogUserAdmin(UserAdmin):
     search_fields = ('username', 'email',)
     ordering = ('email',)
 
-admin.site.register(BlogUser, BlogUserAdmin) #
+admin.site.register(BlogUser, BlogUserAdmin)
+admin.site.register(BlogUserProfile)
