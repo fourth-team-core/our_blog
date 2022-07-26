@@ -23,6 +23,7 @@ class BlogUserAdmin(UserAdmin):
         ('Permissions', {'fields': (
             'is_admin', 
             'is_moderator',
+            'is_author',
             'is_superuser',
             'is_staff',
             'groups',
