@@ -1,0 +1,106 @@
+{% load static %}
+<!--<!DOCTYPE HTML>-->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="all"/>
+    <title>
+        {% block title%}
+        {% endblock %}
+    </title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href='//fonts.googleapis.com/css?family=Carrois+Gothic+SC' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<!-- Start-wrap -->
+<!-- Start-Header-->
+<div class="header">
+    <div class="wrap">
+        <!-- Start-logo-->
+        <div class="logo">
+            <a href="{% url 'index_url'%}"><img src="{% static 'images/logo.png' %}" title="logo"/></a>
+        </div>
+        <div class="login">
+            <a href="{% url 'login_url'%}"><img src="{% static 'images/login.png' %}" title="login"/></a>
+        </div>
+        <!-- End-Logo-->
+        <!-- Start-Header-nav-->
+        <div class="clear"></div>
+        <!-- End-Header-nav-->
+    </div>
+</div>
+<div class="header-nav1">
+    <div class="wrap">
+        <ul>
+            <li class="current"><a href="index.html">Blog</a></li>
+            <li><a href="single.html">Дизайн</a></li>
+            <li><a href="single.html">Веб-разработка</a></li>
+            <li><a href="single.html">Мобильная разработка</a></li>
+            <li><a href="single.html">Маркетинг</a></li>
+            <li><a href="support.html">Техническая Поддержка</a></li>
+        </ul>
+        <div class="search-bar">
+            <ul>
+                <li><input type="text"></li>
+                <li>
+                    <form><input type="submit" value=""/></form>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- End-Header-->
+    <div class="clear"></div>
+    <!-- content-gallery-->
+</div>
+<div class="wrap">
+    <div class="about">
+        <div class="services-sidebar">
+            <h4>Tags</h4>
+            <ul>
+                <li><img src="{% static 'images/pointer.png' %}" title="pointer"/><a href="#">Программирование</a></li>
+                <li><img src="{% static 'images/pointer.png' %}" title="pointer"/><a href="#">IT-компании</a></li>
+                <li><img src="{% static 'images/pointer.png' %}"/><a href="#">Python</a></li>
+                <li><img src="{% static 'images/pointer.png' %}"/><a href="#">Системное администрирование</a></li>
+                <li><img src="{% static 'images/pointer.png' %}"/><a href="#">JavaScript</a></li>
+                <li><img src="{% static 'images/pointer.png' %}"/><a href="#">Алгоритмы</a></li>
+                <li><img src="{% static 'images/pointer.png' %}"/><a href="#">Разработка веб-сайтов</a></li>
+                <li><img src="{% static 'images/pointer.png' %}"/><a href="#">DevOps</a></li>
+                <li><img src="{% static 'images/pointer.png' %}"/><a href="#">Машинное обучение</a></li>
+            </ul>
+            <br>
+
+        </div>
+        <div class="bloder-content">
+            {% block content %}
+                Content
+            {% endblock %}
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+<div class="clear"></div>
+<div class="footer">
+    <div class="wrap">
+        <h3>SAY HELLO</h3>
+        <p>Lorem ipsum dolor sit amet, consect etur adipiscing elit. Vestibulum ut tortor urnati dunt
+
+            dolor. Nunc vulputate ultrices con sect etur donec semper lacinia ultri dolore cie
+
+            lorem ipsum commete.</p>
+        <div class="footerlinks">
+            <div class="share">
+                <li><a href="#" target="_blank" title="VK"><span class="social vk"> </span></a></li>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer1">
+    <p class="link"><span>© 2022 pro_blog.| Designed by&nbsp; <a href="http://w3layouts.com/"> W3Layouts</a>	</span>
+    </p>
+</div>
+<!-- End-wrap -->
+
+</body>
+</html>

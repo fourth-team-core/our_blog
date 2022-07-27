@@ -1,0 +1,44 @@
+{% extends 'base_auth.html' %}
+{% block title %}
+    Auth or Registr
+{% endblock %}
+{% block content %}
+    <div class="wrap">
+        <div class="about">
+            <div class="bloder-content">
+                <div class="blog-box1">
+                    <div class="blog-box-content">
+                        <div class="registration-cssave">
+
+                            <form method="POST">
+                                {% csrf_token %}
+
+                                <h3 class="text-center">Вход в аккаунт</h3>
+                                <div class="form-group">
+                                    <input class="form-control item" type="text" name="username" maxlength="15"
+                                           minlength="4" pattern="^[a-zA-Z0-9_.-]*$" id="username" placeholder="Логин"
+                                           required>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control item" type="password" name="Пароль" minlength="6"
+                                           id="password" placeholder="Пароль" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <button class="btn btn-primary btn-block create-account" type="submit">Вход в
+                                        аккаунт
+                                    </button>
+                                    <button class="btn btn-primary btn-block create-account"  type="submit">Регистрация
+                                    </button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+ {% endblock%}
+
