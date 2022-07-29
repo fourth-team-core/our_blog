@@ -1,0 +1,19 @@
+{% load static %}
+
+<div class="header">
+    <div class="wrap wrap-header">
+        <div class="logo">
+            <a href="{% url 'home'%}"><img src="{% static 'images/logo.png' %}" title="logo"/></a>
+        </div>
+        <div class="login">
+            {% if user.is_authenticated %}
+                Hi {{ user.get_full_name }}!
+                <p><a href="{% url 'authapp:logout' %}">logout</a></p>
+            {% else %}
+                <p>You are not logged in</p>
+                <a href="{% url 'authapp:login' %}">login</a> |
+                <a href="{% url 'authapp:signup' %}">signup</a>
+            {% endif %}
+        </div>
+    </div>
+</div>

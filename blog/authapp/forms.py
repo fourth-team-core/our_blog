@@ -8,7 +8,7 @@ class BlogUserCreationForm(UserCreationForm):
 
     class Meta:
         model = BlogUser
-        fields = ('first_name', 'last_name', 'username', 'email',)
+        fields = ('first_name', 'last_name', 'username', 'email')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
