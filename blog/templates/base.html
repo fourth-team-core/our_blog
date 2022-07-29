@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+        {% endblock title %}
+    </title>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="all"/>
+    <link href='//fonts.googleapis.com/css?family=Carrois+Gothic+SC' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    {% block header %}
+        {% include "header.html" %}
+        {% include "navigation.html" %}
+    {% endblock header %}
+
+    <div class="wrap">
+        <div class="about">
+            <div class="bloger-content">
+                {% block content %}
+                {% endblock content %}
+            </div>
+
+            {% include "sidebar.html" %}
+        </div>
+    </div>
+
+    {% block footer %}
+        {% include "footer.html" %}
+    {% endblock footer %}
+</body>
+</html>
