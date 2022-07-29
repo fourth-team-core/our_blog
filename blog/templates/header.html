@@ -1,0 +1,12 @@
+{% load static %}
+
+<div class="header">
+    <div class="wrap wrap-header">
+        <div class="logo">
+            <a href="{% url 'home'%}"><img src="{% static 'images/logo.png' %}" title="logo"/></a>
+        </div>
+        <div class="login">
+            <a href="{% url 'authapp:login'%}"><img src="{% static 'images/login.png' %}" title="login"/></a>
+        </div>
+    </div>
+</div>
