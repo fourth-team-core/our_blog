@@ -1,0 +1,21 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: The Blog Password Reset Link
+From: webmaster@localhost
+To: admin@mail.io
+Date: Wed, 03 Aug 2022 16:07:49 -0000
+Message-ID: <165954286908.53306.1514529181971403782@40.1.168.192.in-addr.arpa>
+
+
+    To initiate the password reset process for your admin@mail.io blog account, click the link below:
+
+    http://localhost:8000/auth/password_reset_confirm/MQ/b9l8t1-2500623ba88b8d1ea86b3e3ea79ab3f9/
+
+    If clicking the link above doesn't work, please copy and paste the URL in a new browser
+    window instead.
+
+    Regards, 
+    Your Blog Team
+
+-------------------------------------------------------------------------------
