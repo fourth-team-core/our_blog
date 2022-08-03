@@ -4,11 +4,16 @@
     Profile page
 {% endblock title %}
 
+{% block messages %}
+    {{ block.super }}
+{% endblock messages %}
 
 {% block content %}
     {% if user.is_authenticated %}
-        Welcome to your profile {{ user.get_full_name }}
-
+        <h5>Welcome to your profile {{ user.get_full_name }}</h5>
         <p><a href="{% url 'authapp:logout' %}">logout</a></p>
+        <br>
+        <h5>Change password</h5>
+        <p><a href="{% url 'authapp:password-change' %}">change</a></p>
     {% endif %}
 {% endblock content %}

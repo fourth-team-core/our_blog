@@ -4,6 +4,10 @@
     Login
 {% endblock title %}
 
+{% block messages %}
+    {# Leave this one empty to keep the login page clean from all messages #}
+{% endblock messages %}
+
 {% block content %}
     <div>
         <form method="POST">
@@ -12,6 +16,8 @@
             <button type="submit">Login</button>
         </form>
         <br/>
-        <div>You can  <a href="{% url 'authapp:signup' %}">signup</a> if you don't have account</div>
+        <div>You can  <a href="{% url 'authapp:signup' %}">signup</a> if you don't have an account</div>
+        <br>
+        <div>Forgot your password? Not a problem: you can always <a href="{% url 'authapp:password-reset' %}">reset</a> it!</div>
     </div>
 {% endblock content %}

@@ -148,3 +148,20 @@ AUTH_USER_MODEL = 'authapp.BlogUser'
 
 LOGIN_REDIRECT_URL = '/auth/profile'
 LOGOUT_REDIRECT_URL = 'home'
+
+# setting to disable all password validators 
+# TODO: remove this one before deployment!
+AUTH_PASSWORD_VALIDATORS = []
+
+# email part
+EMAIL_HOST = "localhost"
+EMAIL_PORT = "25"
+
+EMAIL_USE_SSL = False
+
+EMAIL_HOST_USER = "password-reset@blog.local"
+EMAIL_HOST_PASSWORD = "blog"
+
+# Email as files
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'mails')
