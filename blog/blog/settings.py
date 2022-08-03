@@ -46,6 +46,9 @@ INSTALLED_APPS = [
 
     'mainapp.apps.MainappConfig',
     'authapp.apps.AuthappConfig',
+    'social_django',
+
+    'bootstrap4',
 ]
 
 MIDDLEWARE = [
@@ -91,6 +94,7 @@ DATABASES = {
         'USER': env('DB_USER'),
         'PASSWORD': env('DB_PASSWORD'),
         'HOST': 'localhost',
+        'PORT': env('DB_PORT')
     }
 }
 
@@ -148,3 +152,22 @@ AUTH_USER_MODEL = 'authapp.BlogUser'
 
 LOGIN_REDIRECT_URL = '/auth/profile'
 LOGOUT_REDIRECT_URL = 'home'
+
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
+    "social_core.backends.vk.VKOAuth2",
+)
+
+SOCIAL_AUTH_URL_NAMESPACE = "social"
+
+SOCIAL_AUTH_VK_OAUTH2_KEY = env('VK_KEY')
+SOCIAL_AUTH_VK_OAUTH2_SECRET = env('VK_SECRET')
+
+SOCIAL_AUTH_GITHUB_KEY = env('GITHUB_KEY')
+SOCIAL_AUTH_GITHUB_SECRET = env('GITHUB_SECRET')
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = env('GOOGLE_KEY')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = env('GOOGLE_SECRET')
