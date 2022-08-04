@@ -9,6 +9,7 @@
 {% endblock messages %}
 
 {% block content %}
+
     <div>
         <form method="POST">
             {% csrf_token %}
@@ -20,4 +21,14 @@
         <br>
         <div>Forgot your password? Not a problem: you can always <a href="{% url 'authapp:password-reset' %}">reset</a> it!</div>
     </div>
+    <br/>
+    <a href="{% url 'social:begin' 'vk-oauth2' %}?next=/" class="btn btn-primary" role="button">
+    ВКонтакте <i class="fa fa-vk"></i>
+    </a>
+    <a href="{% url 'social:begin' 'github' %}?next=/" class="btn btn-dark" role="button">
+    Github <i class="fa fa-github"></i>
+    </a>
+    <a href="{% url 'social:begin' 'google-oauth2' %}?next=/" class="btn btn-warning" role="button">
+    Google <i class="fa fa-google"></i>
+    </a>
 {% endblock content %}

@@ -10,4 +10,14 @@
         {{ form.as_p }}
         <button class="btn btn-primary" type="submit">Register</button>
     </form>
+    <br/>
+    <a href="{% url 'social:begin' 'vk-oauth2' %}?next=/" class="btn btn-primary" role="button">
+    ВКонтакте <i class="fa fa-vk"></i>
+    </a>
+    <a href="{% url 'social:begin' 'github' %}?next=/" class="btn btn-dark" role="button">
+    Github <i class="fa fa-github"></i>
+    </a>
+    <a href="{% url 'social:begin' 'google-oauth2' %}?next=/" class="btn btn-warning" role="button">
+    Google <i class="fa fa-google"></i>
+    </a>
 {% endblock content %}
