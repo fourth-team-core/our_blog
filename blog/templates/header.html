@@ -7,8 +7,9 @@
         </div>
         <div class="login">
             {% if user.is_authenticated %}
-                Hi {{ user.get_full_name }}!
-                <p><a href="{% url 'authapp:logout' %}">logout</a></p>
+                <p>Hi {{ user.get_full_name }}!</p>
+                <a href="{% url 'authapp:profile' %}">profile</a> |
+                <a href="{% url 'authapp:logout' %}">logout</a>
             {% else %}
                 <p>You are not logged in</p>
                 <a href="{% url 'authapp:login' %}">login</a> |

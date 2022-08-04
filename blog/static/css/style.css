@@ -123,6 +123,11 @@ img{max-width:100%;}
 
 .login {
 	align-self: flex-end;
+	font-size: larger;
+}
+
+.login a {
+	color: #FFFFFF;
 }
 /*---end-logo*/
 /*---start-header-nav*/
@@ -749,6 +754,64 @@ form textarea{
 	text-align: left;
 	padding: 10px 0px;
 }
+
+.profile__card {
+	display: flex;
+	justify-content: space-between;
+}
+
+.profile__data {
+	width: 70%;
+}
+
+.profile__data ul {
+	margin: 30px 0 0;
+}
+
+.profile__data ul li {
+	width: 100%;
+	margin-bottom: 15px;
+	font-size: 14px;
+	font-weight: 800;
+	font-family: 'Carrois Gothic SC', sans-serif;
+}
+
+.profile__data-titles {
+	font-weight: 800;
+	color: #444;
+	margin-right: 10px;
+	min-width: 150px;
+	display: inline-block;
+}
+
+.profile__data ul li .profile__data-titles:hover {
+	font-weight: 800;
+	color: #444;
+}
+
+.profile__data h4 {
+	font-weight: 800;
+	font-family: 'Carrois Gothic SC', sans-serif;
+	font-size: 18px;
+}
+
+.profile__avatar {
+	max-width: 170px;
+	max-height: 140px;
+}
+
+.confirmation-buttons {
+	display: flex;
+	justify-content: space-between;
+}
+
+.confirmation-buttons button[type='submit'] {
+	background-color: #4CAF50;
+	color: #eee;
+	border: none;
+	padding: 3px 6px;
+}
+
 
 /*---End-wrap*/
 /*------responive-design--------*/
