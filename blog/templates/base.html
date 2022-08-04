@@ -20,6 +20,14 @@
         {% include "navigation.html" %}
     {% endblock header %}
 
+    {% block messages %}
+        {% if messages %}
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        {% endif %}
+    {% endblock messages %}
+
     <div class="wrap">
         <div class="about">
             <div class="bloger-content">
