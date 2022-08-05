@@ -368,9 +368,6 @@ ul.dc_paginationA03 li a:hover, ul.dc_paginationA03 li a.current {
 /*----about-----*/
 .about {
 	border: 1px ridge;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
 	padding: 20px;
 }
 .about h2{
@@ -379,6 +376,7 @@ ul.dc_paginationA03 li a:hover, ul.dc_paginationA03 li a.current {
 	color:#264284;
 	text-align: center;
 	padding: 10px 0px;
+	margin-bottom: 20px;
 }
 .blog-img{
 	cursor:pointer;
@@ -391,15 +389,15 @@ ul.dc_paginationA03 li a:hover, ul.dc_paginationA03 li a.current {
 	opacity: 0.8;
 }
 .bloger-grid {
-	width: 76%;
+	width: 100%;
 	align-self: flex-start;
-	padding-bottom: 20px;
-	border-bottom: 1px ridge rgb(241, 241, 241);
-	padding: 20px 0px 20px 20px;
+	border: 1px ridge rgb(241, 241, 241);
+	padding: 20px;
+	margin: 0 0 15px;
 }
 .bloger-content{
 	align-self: flex-start;
-	width: 53%;
+	width: 75%;
 }
 .bloger-content h5 a{
 	font-family: 'Carrois Gothic SC', sans-serif;
@@ -761,7 +759,7 @@ form textarea{
 }
 
 .profile__data {
-	width: 70%;
+	width: 80%;
 }
 
 .profile__data ul {
