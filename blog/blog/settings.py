@@ -37,18 +37,14 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-
-    'mainapp.apps.MainappConfig',
-    'authapp.apps.AuthappConfig',
-    'social_django',
-
-    'bootstrap4',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "mainapp.apps.MainappConfig",
+    "authapp.apps.AuthappConfig",
 ]
 
 MIDDLEWARE = [
@@ -88,13 +84,12 @@ WSGI_APPLICATION = "blog.wsgi.application"
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('DB_NAME'),
-        'USER': env('DB_USER'),
-        'PASSWORD': env('DB_PASSWORD'),
-        'HOST': 'localhost',
-        'PORT': env('DB_PORT')
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": env("DB_NAME"),
+        "USER": env("DB_USER"),
+        "PASSWORD": env("DB_PASSWORD"),
+        "HOST": "localhost",
     }
 }
 
@@ -166,29 +161,6 @@ EMAIL_USE_SSL = False
 EMAIL_HOST_USER = "password-reset@blog.local"
 EMAIL_HOST_PASSWORD = "blog"
 
-LOGIN_REDIRECT_URL = '/auth/profile'
-LOGOUT_REDIRECT_URL = 'home'
-
-
-AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',
-    'social_core.backends.github.GithubOAuth2',
-    'social_core.backends.google.GoogleOAuth2',
-    "social_core.backends.vk.VKOAuth2",
-)
-
-SOCIAL_AUTH_URL_NAMESPACE = "social"
-
-SOCIAL_AUTH_VK_OAUTH2_KEY = env('VK_KEY')
-SOCIAL_AUTH_VK_OAUTH2_SECRET = env('VK_SECRET')
-
-SOCIAL_AUTH_GITHUB_KEY = env('GITHUB_KEY')
-SOCIAL_AUTH_GITHUB_SECRET = env('GITHUB_SECRET')
-
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = env('GOOGLE_KEY')
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = env('GOOGLE_SECRET')
-
 # Email as files
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, "mails")
-
