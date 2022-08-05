@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "mainapp.apps.MainappConfig",
     "authapp.apps.AuthappConfig",
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -55,6 +56,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = "blog.urls"
@@ -90,6 +92,7 @@ DATABASES = {
         "USER": env("DB_USER"),
         "PASSWORD": env("DB_PASSWORD"),
         "HOST": "localhost",
+        'PORT': env('DB_PORT'),
     }
 }
 
@@ -164,3 +167,21 @@ EMAIL_HOST_PASSWORD = "blog"
 # Email as files
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, "mails")
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
+    "social_core.backends.vk.VKOAuth2",
+)
+
+SOCIAL_AUTH_URL_NAMESPACE = "social"
+
+SOCIAL_AUTH_VK_OAUTH2_KEY = env('VK_KEY')
+SOCIAL_AUTH_VK_OAUTH2_SECRET = env('VK_SECRET')
+
+SOCIAL_AUTH_GITHUB_KEY = env('GITHUB_KEY')
+SOCIAL_AUTH_GITHUB_SECRET = env('GITHUB_SECRET')
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = env('GOOGLE_KEY')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = env('GOOGLE_SECRET')
