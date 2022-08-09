@@ -28,6 +28,11 @@
                     <li><span class="profile__data-titles">Comments history:</span> </li>
                 </ul>
                 <p><a href="{% url 'authapp:password-change' %}">Change password</a></p>
+                <br/>
+                <hr/>
+                <div class="profile__cms">
+                    <a href="{% url "mainapp:post-create" %}" class="profile__cms__add-post">Новый пост + </a>
+                </div>
             </div>
         </div>
     {% endif %}

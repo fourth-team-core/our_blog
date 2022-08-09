@@ -1,7 +1,4 @@
-from django.shortcuts import render
-
-# Create your views here.
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 
 from mainapp.models import Post
 
@@ -21,3 +18,11 @@ class PostDetailView(DetailView):
     template_name = "mainapp/post_detail.html"
     context_object_name = 'post'
 
+
+class PostCreateView(CreateView):
+    model = Post
+    fields = ["title", "category", "url", "content", "tags", "status", "published_at"]
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
