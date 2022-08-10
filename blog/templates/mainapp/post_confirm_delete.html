@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <form method="post" class="post__create-form">
+        {% csrf_token %}
+        <p>Вы точно хотите удалить пост "{{ object }}"?</p>
+        {{ form }}
+        <input type="submit" value="Подтвердить" class="post__create-form__delete-btn">
+        <br/>
+        <br/>
+        <hr/>
+        <div class="post__create-form__cancel-btn">
+            Нет, я передумал. <a href="{% url 'mainapp:user-posts' %}">Вернуться к списку</a>
+        </div>
+    </form>
+{% endblock %}
