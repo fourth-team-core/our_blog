@@ -5,9 +5,6 @@ from authapp.models import BlogUser
 
 
 class PostCategory(models.Model):
-    url = models.URLField(
-        verbose_name="category url",
-    )
     name = models.CharField(
         max_length=64,
         verbose_name="category name",
@@ -24,9 +21,6 @@ class PostCategory(models.Model):
 
 
 class Tag(models.Model):
-    url = models.URLField(
-        verbose_name="tag url",
-    )
     name = models.CharField(
         max_length=10,
         verbose_name="tag name",
@@ -65,11 +59,6 @@ class Post(models.Model):
         verbose_name="post title",
         null=False,
     )
-    url = models.URLField(
-        verbose_name="post url",
-        null=False,
-        unique=True,
-    )
     content = models.TextField(
         verbose_name="content",
         null=False,
@@ -84,13 +73,12 @@ class Post(models.Model):
         default="draft",
     )
     likes_count = models.BigIntegerField(default=0)
-    published_at = models.DateTimeField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         db_table = "posts"
-        ordering = ("-published_at",)
+        ordering = ("-created_at",)
 
     def __str__(self):
         return f"{self.title}"
@@ -113,11 +101,6 @@ class Comment(models.Model):
     parent_id = models.BigIntegerField(
         verbose_name="parent id",
         null=False,
-    )
-    url = models.URLField(
-        verbose_name="post url",
-        null=False,
-        unique=True,
     )
     content = models.TextField(
         verbose_name="content",

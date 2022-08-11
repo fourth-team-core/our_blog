@@ -10,13 +10,13 @@ from .models import Like
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
     search_fields = ('name',)
-    list_display = ('name', 'url')
+    list_display = ('name', )
 
 
 @admin.register(PostCategory)
 class PostCategoryAdmin(admin.ModelAdmin):
-    search_fields = ('url', 'name')
-    list_display = ('id', 'url', 'name')
+    search_fields = ('name',)
+    list_display = ('id', 'name',)
 
 
 @admin.register(Post)
@@ -60,8 +60,6 @@ class CommentAdmin(admin.ModelAdmin):
         'display_author_name',
         'display_post_title',
         'parent_id',
-        'url',
-        'published_at',
     )
     search_fields = ('author__username', 'post__title', 'parent_id')
     list_filter = ('author__username', 'post__title', 'parent_id')

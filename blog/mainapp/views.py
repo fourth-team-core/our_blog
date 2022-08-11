@@ -11,7 +11,7 @@ class PostsList(ListView):
     paginate_by = 10
 
     def get_queryset(self):
-        return Post.objects.filter(status='published').order_by('-published_at')
+        return Post.objects.filter(status='published').order_by('-created_at')
 
 
 class UserPostsList(ListView):
