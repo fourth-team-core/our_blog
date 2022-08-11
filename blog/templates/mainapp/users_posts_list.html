@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    My Posts
+{% endblock title %}
+
+{% block header %}
+    {% include "header.html" %}
+{% endblock header %}
+
+{% block content %}
+    <h1 class="post__users-posts-header">Мои посты</h1>
+    <h6 class="post__users-posts-subheader">Здесь можно просматривать, редактировать и удалять созданные тобой посты.</h6>
+    {% include "mainapp/post_list.html" %}
+{% endblock content %}

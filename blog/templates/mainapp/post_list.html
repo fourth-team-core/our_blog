@@ -1,0 +1,28 @@
+{% load static %}
+
+{% block content %}
+    <div class="bloger-content">
+        {% for post in posts %}
+            <div class="bloger-grid">
+                <h5><a href="{% url "mainapp:post-detail" pk=post.id %}">{{ post.title }}</a></h5>
+                {% include "mainapp/inc-tags.html" %}
+                <p>
+                    {{ post.content|truncatewords:30 }}
+                </p>
+                <ul class="post__footer">
+                    <li><a href="#">{{ post.published_at }}</a></li>
+                    <li><a href="#">{{ post.author }}</a></li>
+                    <li class="post__read-more"><a href="{% url "mainapp:post-detail" pk=post.id %}"><span>Читать далее ></span></a></li>
+                </ul>
+                {% if users_posts_page %}
+                    <hr/>
+                    <div class="post__admin-tools">
+                        <a href="{% url "mainapp:post-update" pk=post.id %}">Редактировать</a>
+                        <a href="{% url "mainapp:post-delete" pk=post.id %}">Удалить</a>
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+    {% include 'mainapp/pagination.html' %}
+{% endblock %}
