@@ -37,7 +37,7 @@ class PostDetailView(DetailView):
 
 class PostCreateView(CreateView):
     model = Post
-    fields = ["title", "category", "url", "content", "tags", "status", "published_at"]
+    fields = ["title", "category", "content", "tags"]
     template_name_suffix = '_create_form'
 
     def form_valid(self, form):
@@ -47,7 +47,7 @@ class PostCreateView(CreateView):
 
 class PostUpdateView(UpdateView):
     model = Post
-    fields = ["title", "category", "url", "content", "tags", "status", "published_at"]
+    fields = ["title", "category", "content", "tags"]
     template_name_suffix = '_update_form'
 
 
