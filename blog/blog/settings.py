@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "mainapp.apps.MainappConfig",
     "authapp.apps.AuthappConfig",
     'social_django',
+    'django.contrib.postgres',
 ]
 
 MIDDLEWARE = [
