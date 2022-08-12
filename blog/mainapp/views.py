@@ -1,5 +1,7 @@
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.shortcuts import render
+from django.contrib.postgres.search import SearchQuery, SearchVector
 
 from mainapp.models import Post
 
@@ -11,7 +13,7 @@ class PostsList(ListView):
     paginate_by = 10
 
     def get_queryset(self):
-        return Post.objects.filter(status='published').order_by('-published_at')
+        return Post.objects.filter(status='published').order_by('-created_at')
 
 
 class UserPostsList(ListView):
@@ -54,3 +56,17 @@ class PostUpdateView(UpdateView):
 class PostDeleteView(DeleteView):
     model = Post
     success_url = reverse_lazy("mainapp:user-posts")
+
+
+def search_results(request):
+    q = request.GET.get('q')
+
+    if q:
+        vector = SearchVector('title', 'content')
+        query = SearchQuery(q)
+        posts = Post.objects.annotate(search=vector).filter(search=query)
+    else:
+        posts = None
+
+    context = {'posts': posts}
+    return render(request, 'mainapp/search_results.html', context)

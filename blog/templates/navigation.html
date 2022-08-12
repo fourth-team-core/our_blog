@@ -10,9 +10,11 @@
         </ul>
         <div class="search-bar">
             <ul>
-                <li><input type="text"></li>
                 <li>
-                    <form><input type="submit" value=""/></form>
+                    <form action="{% url 'mainapp:search-results' %}">
+                        <input type="text" name="q">
+                        <!-- <input type="submit" value=""/> -->
+                    </form>
                 </li>
             </ul>
         </div>
