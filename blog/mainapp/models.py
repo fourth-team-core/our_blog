@@ -1,10 +1,20 @@
+import random
+
+from hashids import Hashids
+
 from django.db import models
 from django.urls import reverse
+from django.utils import timezone
 
 from authapp.models import BlogUser
 
 
 class PostCategory(models.Model):
+    url = models.URLField(
+        verbose_name="category url",
+        blank=True,
+        unique=True,
+    )
     name = models.CharField(
         max_length=64,
         verbose_name="category name",
@@ -19,8 +29,21 @@ class PostCategory(models.Model):
     def __str__(self):
         return f"{self.name}"
 
+    def _set_post_category_url(self):
+        self.url = f'http://127.0.0.1:8000/post_categories/{self.name}'
+
+    def save(self, *args, **kwargs):
+        # TODO: переделать реализацию получения `url`.
+        self._set_post_category_url()
+        super(PostCategory, self).save()
+
 
 class Tag(models.Model):
+    url = models.URLField(
+        verbose_name="tag url",
+        blank=True,
+        unique=True,
+    )
     name = models.CharField(
         max_length=10,
         verbose_name="tag name",
@@ -37,6 +60,14 @@ class Tag(models.Model):
 
     def __str__(self):
         return f"{self.name}"
+
+    def _set_tag_url(self):
+        self.url = f'http://127.0.0.1:8000/tags/{self.name}'
+
+    def save(self, *args, **kwargs):
+        # TODO: переделать реализацию получения `url`.
+        self._set_tag_url()
+        super(Tag, self).save()
 
 
 class Post(models.Model):
@@ -59,6 +90,12 @@ class Post(models.Model):
         verbose_name="post title",
         null=False,
     )
+    url = models.URLField(
+        verbose_name="post url",
+        null=False,
+        unique=True,
+        blank=True,
+    )
     content = models.TextField(
         verbose_name="content",
         null=False,
@@ -73,18 +110,34 @@ class Post(models.Model):
         default="draft",
     )
     likes_count = models.BigIntegerField(default=0)
+    published_at = models.DateTimeField(default=timezone.now)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         db_table = "posts"
-        ordering = ("-created_at",)
+        ordering = ("-published_at",)
 
     def __str__(self):
         return f"{self.title}"
 
     def get_absolute_url(self):
         return reverse("mainapp:post-detail", kwargs={'pk': self.pk})
+
+    def _get_salt(self):
+        s = sum(map(lambda x: ord(x), self.url))
+        salt = chr(random.randint(0, 1000))
+        hashids = Hashids(salt=salt)
+        return hashids.encode(s)
+
+    def _set_post_url(self):
+        self.url = f'http://127.0.0.1:8000/{self.author.id}/' \
+                   f'{"-".join(self.title.split())}-{self._get_salt()}'
+
+    def save(self, *args, **kwargs):
+        # TODO: переделать реализацию получения `url`.
+        self._set_post_url()
+        super(Post, self).save()
 
 
 class Comment(models.Model):
@@ -102,6 +155,12 @@ class Comment(models.Model):
         verbose_name="parent id",
         null=False,
     )
+    url = models.URLField(
+        verbose_name="post url",
+        null=False,
+        unique=True,
+        blank=True,
+    )
     content = models.TextField(
         verbose_name="content",
         null=False,
@@ -115,6 +174,15 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"{self.post} - {self.content}"
+
+    def _set_comment_url(self):
+        self.url = f'http://127.0.0.1:8000/{self.post.title}/{self.parent_id}/' \
+                   f'{self.id}'
+
+    def save(self, *args, **kwargs):
+        # TODO: переделать реализацию получения `url`.
+        self._set_comment_url()
+        super(Comment, self).save()
 
 
 class Like(models.Model):
