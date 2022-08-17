@@ -1,9 +1,10 @@
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.postgres.search import SearchQuery, SearchVector
 
-from mainapp.models import Post
+from mainapp.forms import CommentForm
+from mainapp.models import Post, Comment
 
 
 class PostsList(ListView):
@@ -35,6 +36,46 @@ class PostDetailView(DetailView):
     model = Post
     template_name = "mainapp/post_detail.html"
     context_object_name = 'post'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        pk = self.kwargs["pk"]
+        slug = self.kwargs["slug"]
+
+        form = CommentForm()
+        post = get_object_or_404(Post, pk=pk, slug=slug)
+        comments = post.comment_set.all()
+
+        context['post'] = post
+        context['comments'] = comments
+        context['form'] = form
+        return context
+
+    def post(self, request, *args, **kwargs):
+        form = CommentForm(request.POST)
+        self.object = self.get_object()
+        context = super().get_context_data(**kwargs)
+
+        post = Post.objects.filter(id=self.kwargs['pk'])[0]
+        comments = post.comment_set.all()
+
+        context['post'] = post
+        context['comments'] = comments
+        context['form'] = form
+
+        if form.is_valid():
+            author = form.cleaned_data['author']
+            content = form.cleaned_data['content']
+
+            comment = Comment.objects.create(
+                author=author,  content=content, post=post
+            )
+
+            form = CommentForm()
+            context['form'] = form
+            return self.render_to_response(context=context)
+
+        return self.render_to_response(context=context)
 
 
 class PostCreateView(CreateView):

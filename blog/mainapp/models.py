@@ -88,33 +88,33 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
+    """ Comment """
     author = models.ForeignKey(
         BlogUser,
-        on_delete=models.RESTRICT,
+        on_delete=models.CASCADE,
         verbose_name="post author",
     )
     post = models.ForeignKey(
         Post,
-        on_delete=models.RESTRICT,
+        on_delete=models.CASCADE,
         verbose_name="post",
-    )
-    parent_id = models.BigIntegerField(
-        verbose_name="parent id",
-        null=False,
     )
     content = models.TextField(
         verbose_name="content",
         null=False,
     )
-    published_at = models.DateTimeField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    active = models.BooleanField(default=True,
+                                 help_text="If True, the comment will be shown on page"
+                                 )
 
     class Meta:
         db_table = "comments"
+        ordering = ('-created_at',)
 
     def __str__(self):
-        return f"{self.post} - {self.content}"
+        return f"Comment by  {self.author} on {self.post}"
 
 
 class Like(models.Model):
