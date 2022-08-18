@@ -1210,3 +1210,15 @@ a {
     margin: 5px 0;
     padding: 5px 15px;
   }
+
+.categories {
+    padding: 2px; /* Поля вокруг текста ссылки */
+    text-decoration: none; /* Убираем подчёркивание */
+}
+
+
+.categories:hover {
+    background: #0000ff; /* Цвет фона при наведении на ссылку курсора */
+    color: white; /* Новый цвет текста */
+}
+

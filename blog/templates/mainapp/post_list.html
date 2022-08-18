@@ -5,13 +5,15 @@
         {% for post in posts %}
             <div class="bloger-grid">
                 <h5><a href="{% url "mainapp:post-detail" pk=post.id %}">{{ post.title }}</a></h5>
-                {% include "mainapp/inc-tags.html" %}
+                <h6>Категория: <a class="categories" href="">{{ post.category }}</a></h6>
+
                 <p>
                     {{ post.content|truncatewords:30 }}
                 </p>
                 <ul class="post__footer">
                     <li><a href="#">{{ post.created_at }}</a></li>
                     <li><a href="#">{{ post.author }}</a></li>
+                    {% include "mainapp/inc-tags.html" %}
                     <li class="post__read-more"><a href="{% url "mainapp:post-detail" pk=post.id %}"><span>Читать далее ></span></a></li>
                 </ul>
                 {% if users_posts_page %}
