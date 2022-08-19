@@ -17,6 +17,9 @@ flake8-polyfill = "^1.0.2"
 flake8-variables-names = "^0.0.5"
 pep8-naming = "^0.13.1"
 Pillow = "^9.2.0"
+isort = "^5.10.1"
+flake8-black = "^0.3.3"
+social-auth-app-django = "^5.0.0"
 
 [tool.poetry.dev-dependencies]
 

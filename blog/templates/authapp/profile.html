@@ -1,14 +1,39 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
     Profile page
 {% endblock title %}
 
+{% block messages %}
+    {{ block.super }}
+{% endblock messages %}
 
 {% block content %}
     {% if user.is_authenticated %}
-        Welcome to your profile {{ user.get_full_name }}
-
-        <p><a href="{% url 'authapp:logout' %}">logout</a></p>
+        <div class="profile__card">
+            {% if user.avatar %}
+                <img class="profile__avatar" src="{{ user.avatar }}" alt="">
+            {% else %}
+                <img class="profile__avatar" src="{% static 'images/default_avatar.png' %}" alt="">
+            {% endif %}
+            <div class="profile__data">
+                <h4>Welcome to your profile {{ user.get_full_name }}!</h4>
+                <ul>
+                    <li><span class="profile__data-titles">Username:</span> {{ user.username }}</li>
+                    <li><span class="profile__data-titles">Name:</span> {{ user.get_full_name }}</li>
+                    <li><span class="profile__data-titles">Email:</span> {{ user.email }}</li>
+                    <li><span class="profile__data-titles">Joined at:</span> {{ user.date_joined }}</li>
+                    <li><span class="profile__data-titles">Posts created:</span> <a href="{% url "mainapp:user-posts" %}">My posts</a></li>
+                    <li><span class="profile__data-titles">Comments history:</span> </li>
+                </ul>
+                <p><a href="{% url 'authapp:password-change' %}">Change password</a></p>
+                <br/>
+                <hr/>
+                <div class="profile__cms">
+                    <a href="{% url "mainapp:post-create" %}" class="profile__cms__add-post">Новый пост + </a>
+                </div>
+            </div>
+        </div>
     {% endif %}
 {% endblock content %}
