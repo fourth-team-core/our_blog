@@ -1,4 +1,5 @@
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
+from django.http import HttpResponseRedirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.shortcuts import render, get_object_or_404
 from django.contrib.postgres.search import SearchQuery, SearchVector
@@ -32,6 +33,17 @@ class UserPostsList(ListView):
         return context
 
 
+class UserPostComments(ListView):
+    model = Comment
+    template_name = "mainapp/users_comments_list.html"
+    context_object_name = "comments"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['user_comments'] = Comment.objects.filter(author=self.request.user).order_by('-created_at')
+        return context
+
+
 class PostDetailView(DetailView):
     model = Post
     template_name = "mainapp/post_detail.html"
@@ -40,10 +52,9 @@ class PostDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         pk = self.kwargs["pk"]
-        slug = self.kwargs["slug"]
 
         form = CommentForm()
-        post = get_object_or_404(Post, pk=pk, slug=slug)
+        post = get_object_or_404(Post, pk=pk)
         comments = post.comment_set.all()
 
         context['post'] = post
@@ -73,8 +84,7 @@ class PostDetailView(DetailView):
 
             form = CommentForm()
             context['form'] = form
-            return self.render_to_response(context=context)
-
+            return HttpResponseRedirect(reverse('mainapp:post-detail', args=str(post.pk)))
         return self.render_to_response(context=context)
 
 

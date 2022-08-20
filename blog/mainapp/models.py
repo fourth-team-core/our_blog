@@ -107,7 +107,7 @@ class Comment(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=True,
                                  help_text="If True, the comment will be shown on page"
-                                 )
+                                )
 
     class Meta:
         db_table = "comments"
