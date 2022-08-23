@@ -33,7 +33,6 @@
 
                 <form class="post__content" method="POST">
                     {% csrf_token %}
-                    Author: {{ form.author }}
                     <br>
                     Your comment: 
                     <br>{{ form.content }}

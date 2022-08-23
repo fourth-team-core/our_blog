@@ -75,7 +75,7 @@ class PostDetailView(DetailView):
         context['form'] = form
 
         if form.is_valid():
-            author = form.cleaned_data['author']
+            author = self.request.user
             content = form.cleaned_data['content']
 
             comment = Comment.objects.create(
