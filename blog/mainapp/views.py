@@ -17,13 +17,16 @@ class PostsList(ListView):
         return Post.objects.filter(status='published').order_by('-created_at')
 
 
-class CategoryPostsList(ListView):
-    model = Post
-    template_name = 'mainapp/category_posts_list.html'
-    context_object_name = 'category_posts'
+
+class PostByCategoryView(ListView):
+    context_object_name = 'posts'
+    template_name = 'home.html'
+    paginate_by = 5
 
     def get_queryset(self):
-        return Post.objects.filter(category__pk=self.kwargs.get("pk"))
+        self.category = PostCategory.objects.get(pk=self.kwargs['pk'])
+        queryset = Post.objects.filter(category=self.category)
+        return queryset
 
 
 
