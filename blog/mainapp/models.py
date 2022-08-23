@@ -43,6 +43,7 @@ class Post(models.Model):
     STATUS_CHOICES = {
         ("draft", "Draft"),
         ("published", "Published"),
+        ("rejected", "Rejected"),
     }
     author = models.ForeignKey(
         BlogUser,
@@ -106,7 +107,6 @@ class Comment(models.Model):
         verbose_name="content",
         null=False,
     )
-    published_at = models.DateTimeField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

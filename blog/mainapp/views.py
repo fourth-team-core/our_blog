@@ -3,7 +3,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.shortcuts import render
 from django.contrib.postgres.search import SearchQuery, SearchVector
 
-from mainapp.models import Post
+from mainapp.models import Post, Tag
 
 
 class PostsList(ListView):
@@ -35,6 +35,12 @@ class PostDetailView(DetailView):
     model = Post
     template_name = "mainapp/post_detail.html"
     context_object_name = 'post'
+
+    def get_context_data(self, **kwargs):
+        data = super(PostDetailView, self).get_context_data(**kwargs)
+        post_tags = Tag.objects.filter(post_tags=kwargs['object'].pk)
+        data['post_tags'] = post_tags
+        return data
 
 
 class PostCreateView(CreateView):
