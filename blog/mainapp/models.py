@@ -43,6 +43,7 @@ class Post(models.Model):
     STATUS_CHOICES = {
         ("draft", "Draft"),
         ("published", "Published"),
+        ("rejected", "Rejected"),
     }
     author = models.ForeignKey(
         BlogUser,

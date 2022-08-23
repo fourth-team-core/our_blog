@@ -4,8 +4,10 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.shortcuts import render, get_object_or_404
 from django.contrib.postgres.search import SearchQuery, SearchVector
 
+
 from mainapp.forms import CommentForm
 from mainapp.models import Post, Comment
+
 
 
 class PostsList(ListView):
