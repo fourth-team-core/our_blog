@@ -43,10 +43,10 @@
                 {% if comments %}
                     <br><br>
                     <h5 class="post__content">Comment{{ comments.count|pluralize }}: {{ comments.count }}</h5>
-                    <br>
                         <div class="post__content">
                             {% for comment in comments %}
                                 {% if comment.active %}
+                                    <br>
                                     Author: {{ comment.author }}
                                     <br>
                                     {{ comment.content }}

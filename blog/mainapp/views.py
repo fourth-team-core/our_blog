@@ -3,10 +3,14 @@ from django.http import HttpResponseRedirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.shortcuts import render, get_object_or_404
 from django.contrib.postgres.search import SearchQuery, SearchVector
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login
+from django.utils.decorators import method_decorator
 
 
 from mainapp.forms import CommentForm
-from mainapp.models import Post, Comment
+from mainapp.models import Post, Comment, Tag
 
 
 
@@ -46,22 +50,32 @@ class UserPostComments(ListView):
         return context
 
 
-class PostDetailView(DetailView):
+class PostDetailView(LoginRequiredMixin, DetailView):
     model = Post
     template_name = "mainapp/post_detail.html"
     context_object_name = 'post'
+    login_url = reverse_lazy("authapp:login")
+    redirect_field_name = 'redirect_to'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         pk = self.kwargs["pk"]
 
+        post_tags = Tag.objects.filter(post_tags=kwargs['object'].pk)
+
         form = CommentForm()
         post = get_object_or_404(Post, pk=pk)
         comments = post.comment_set.all()
 
-        context['post'] = post
-        context['comments'] = comments
-        context['form'] = form
+        context.update(
+            {
+                'post': post,
+                'comments': comments,
+                'form': form,
+                'post_tags': post_tags,
+            }
+        )
+
         return context
 
     def post(self, request, *args, **kwargs):
