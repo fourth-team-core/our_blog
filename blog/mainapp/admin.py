@@ -59,10 +59,9 @@ class CommentAdmin(admin.ModelAdmin):
     list_display = (
         'display_author_name',
         'display_post_title',
-        'parent_id',
     )
-    search_fields = ('author__username', 'post__title', 'parent_id')
-    list_filter = ('author__username', 'post__title', 'parent_id')
+    search_fields = ('author__username', 'post__title',)
+    list_filter = ('author__username', 'post__title',)
 
 
 @admin.register(Like)
