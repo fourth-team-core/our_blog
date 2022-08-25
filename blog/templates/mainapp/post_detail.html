@@ -21,6 +21,10 @@
                 <ul class="post__footer">
                     <li>Создан: {{ post.created_at }}</li>
                     <li>Автор: <a href="#">{{ post.author }}</a></li>
+                    <!-- LikeBtn.com BEGIN -->
+                    <span class="likebtn-wrapper" data-theme="github" data-lang="ru" data-identifier="item_1"></span>
+                    <script>(function(d,e,s){if(d.getElementById("likebtn_wjs"))return;a=d.createElement(e);m=d.getElementsByTagName(e)[0];a.async=1;a.id="likebtn_wjs";a.src=s;m.parentNode.insertBefore(a, m)})(document,"script","//w.likebtn.com/js/w/widget.js");</script>
+                    <!-- LikeBtn.com END -->
                 </ul>
             </div>
         </div>
@@ -52,7 +56,12 @@
                                     {{ comment.content }}
                                     <br>
                                     Created at: {{ comment.created_at|date:"d M Y H:i" }}
-                                    <br><br>
+                                    <br>
+                                    <div class='like'>
+                                        <button class='like-toggle basic'>♥</button>
+                                        <span class='hidden'>1 Like</span>
+                                    </div>
+                                    <br>
                                 {% endif %} 
                             {% endfor %}
                         </div>
