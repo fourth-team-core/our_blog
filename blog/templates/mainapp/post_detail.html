@@ -42,22 +42,23 @@
                 
                 {% if comments %}
                     <br><br>
-                    <h5 class="post__content">Comment{{ comments.count|pluralize }}: {{ comments.count }}</h5>
-                        <div class="post__content">
-                            {% for comment in comments %}
-                                {% if comment.active %}
-                                    <br>
+                    <h5 class="post__comments-header">Comment{{ comments.count|pluralize }}: {{ comments.count }}</h5>
+                        {% for comment in comments %}
+                            {% if comment.active %}
+                            <div class="post__comment-block">
+                                <div class="post__comment-block__author">
                                     Author: {{ comment.author }}
-                                    <br>
+                                </div>
+                                <div>
                                     {{ comment.content }}
-                                    <br>
+                                </div>
+                                <div class="post__comment-block__date">
                                     Created at: {{ comment.created_at|date:"d M Y H:i" }}
-                                    <br><br>
-                                {% endif %} 
-                            {% endfor %}
-                        </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
                 {% endif %}
-
             </div>
         </div>
     {% endblock comments %}
