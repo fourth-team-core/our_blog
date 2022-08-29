@@ -1263,6 +1263,20 @@ a {
     margin: 5px 0;
     padding: 5px 15px;
   }
+
+
+.categories {
+    padding: 2px; /* Поля вокруг текста ссылки */
+    text-decoration: none; /* Убираем подчёркивание */
+}
+
+
+.categories:hover {
+    background: #0000ff; /* Цвет фона при наведении на ссылку курсора */
+    color: white; /* Новый цвет текста */
+}
+
+
 .comment_content {
 	color: #555;
 	background-color:#E0FFFF;
@@ -1273,3 +1287,4 @@ a {
     border-radius: 15px; /* Радиус скругления */
     margin: 5px;
 }
+

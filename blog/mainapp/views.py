@@ -10,7 +10,7 @@ from django.utils.decorators import method_decorator
 
 
 from mainapp.forms import CommentForm
-from mainapp.models import Post, Comment, Tag
+from mainapp.models import Post, Comment, Tag, PostCategory
 
 
 
@@ -18,10 +18,25 @@ class PostsList(ListView):
     model = Post
     template_name = 'home.html'
     context_object_name = 'posts'
-    paginate_by = 10
+    paginate_by = 5
 
     def get_queryset(self):
         return Post.objects.filter(status='published').order_by('-created_at')
+
+
+
+class PostByCategoryView(ListView):
+    context_object_name = 'posts'
+    template_name = 'home.html'
+    paginate_by = 5
+
+    def get_queryset(self):
+        self.category = PostCategory.objects.get(pk=self.kwargs['pk'])
+        queryset = Post.objects.filter(category=self.category)
+        return queryset
+
+
+
 
 
 class UserPostsList(ListView):
