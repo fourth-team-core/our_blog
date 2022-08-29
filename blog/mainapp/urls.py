@@ -1,9 +1,6 @@
 from django.urls import path
-<<<<<<< HEAD
-from mainapp.views import PostDetailView, PostCreateView, UserPostsList, PostUpdateView, PostDeleteView, search_results, PostByCategoryView
-=======
-from mainapp.views import PostDetailView, PostCreateView, UserPostsList, UserPostComments, PostUpdateView, PostDeleteView, search_results
->>>>>>> 18099bacf70d915ebf939317c3783ecd896cfe28
+from mainapp.views import PostDetailView, PostCreateView, UserPostsList, UserPostComments, PostUpdateView,\
+    PostDeleteView, search_results, PostByCategoryView
 
 app_name = "mainapp"
 
