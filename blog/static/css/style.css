@@ -59,7 +59,7 @@ img{max-width:100%;}
 	border-bottom: 1px ridge rgb(214, 216, 230);
 	-webkit-box-shadow: 0 8px 6px -6px rgb(214, 216, 230);
 	   -moz-box-shadow: 0 8px 6px -6px rgb(214, 216, 230);
-	        box-shadow: 0 8px 6px -6px rgb(214, 216, 230);
+	        box-shadow: 0 1px 9px 11px rgb(214, 216, 230);
 
 	       }
 .header-nav1 ul li{
@@ -70,14 +70,17 @@ img{max-width:100%;}
 	color: rgb(103, 141, 223);
 	font-family: 'Carrois Gothic SC', sans-serif;
 	font-size: 12px;
-	padding: 18px 11px 17px 14px;
-	margin-right: -4px;
+	padding: 4px 26px 5px 14px;
+	/*margin-right: -4px;*/
 
 }
 .header-nav1 a:hover, .header-nav1 li.current> a, .header-nav1 li.sfHover > a {
-	background:#fff;
+	background:#2de3e3;
 	color:#666;
 	text-decoration: none;
+	outline: 1px solid #7662aec4;
+    border: 3px solid #fff;
+    border-radius: 15px;
 }
 
 .search-bar input[type="text"],.search-bar input[type="submit"]{
@@ -91,7 +94,7 @@ img{max-width:100%;}
 .search-bar{
 	background: rgb(223, 228, 238);
 	border-radius: 0.3em;
-	height: 45px;
+	height: 32px;
 }
 .search-bar input[type="submit"]{
 	cursor:pointer;
@@ -368,7 +371,7 @@ ul.dc_paginationA03 li a:hover, ul.dc_paginationA03 li a.current {
 }
 /*----about-----*/
 .about {
-	border: 1px ridge;
+	/*border: 1px ridge;*/
 	padding: 20px;
 }
 .about h2{
@@ -392,16 +395,23 @@ ul.dc_paginationA03 li a:hover, ul.dc_paginationA03 li a.current {
 .bloger-grid {
 	width: 100%;
 	align-self: flex-start;
-	border: 1px ridge rgb(241, 241, 241);
+	/*border: 1px ridge rgb(241, 241, 241);*/
 	padding: 20px;
 	margin: 0 0 15px;
+	outline: 1px solid #7662aec4; /* Чёрная рамка */
+    border: 3px solid #fff; /* Белая рамка */
+    border-radius: 15px; /* Радиус скругления */
 }
 
 .post__users-posts-header {
 	margin: 0 0 20px;
     font-size: 30px;
 	font-weight: bold;
-	color: #333333;
+	color: #FFF;
+	text-align: center;
+	background-color: #4169E1;
+	border-radius: 15px;
+	font-family: 'Carrois Gothic SC', sans-serif;
 }
 
 .post__users-posts-subheader {
@@ -423,6 +433,37 @@ ul.dc_paginationA03 li a:hover, ul.dc_paginationA03 li a.current {
 
 .post__footer li {
 	margin-bottom: 10px;
+}
+
+.post__comments-header {
+	font-size: 28px;
+    border-bottom: 1px solid lightgrey;
+    padding: 10px 0;
+	margin-bottom: 15px;
+    max-width: 250px;
+}
+
+.post__comment-block {
+	max-width: 250px;
+	background-color: white;
+	padding: 10px;
+	margin-bottom: 15px;
+}
+
+.post__comment-block > div {
+	padding: 0 0 15px;
+	margin-bottom: 10px;
+	text-align: left;
+    text-indent: 0;
+}
+
+.post__comment-block__author {
+	font-weight: 800;
+}
+
+.post__comment-block__date {
+	margin-top: 15px;
+	font-style: italic;
 }
 
 .post__read-more {
@@ -451,7 +492,10 @@ ul.dc_paginationA03 li a:hover, ul.dc_paginationA03 li a.current {
 	background-color: #2dd352;
 	color: #FFFFFF;
 }
-
+.comment_create_form {
+	background-color: #0000FF;
+	color: #FFFFFF;
+}
 .post__create-form__delete-btn {
 	background-color: #f15a5a;
 	color: #FFFFFF;
@@ -459,7 +503,16 @@ ul.dc_paginationA03 li a:hover, ul.dc_paginationA03 li a.current {
 
 .bloger-content{
 	align-self: flex-start;
-	width: 75%;
+	/*width: 75%;*/
+	color: #555;
+	background-color:#E0FFFF;
+	text-align: justify;
+	text-indent: 1em;
+	/*outline: 1px solid #7662aec4;  Чёрная рамка */
+    /*border: 3px solid #fff; /* Белая рамка */
+    /*border-radius: 15px; /* Радиус скругления */
+    margin: 5px;
+
 }
 .bloger-content h5 a{
 	font-family: 'Carrois Gothic SC', sans-serif;
@@ -544,7 +597,7 @@ ul.dc_paginationA03 li a:hover, ul.dc_paginationA03 li a.current {
 	color:#555;
 }
 .blog-box1{
-	width: 75%;
+	/*width: 75%;*/
 	padding: 20px;
 }
 .blog-box1 img{
@@ -802,7 +855,7 @@ form span{
 }
 
 form textarea{
-	height: 201px;
+	height: 100px;
 	color: #666;
 	font-size: 18px;
 	font-family: Arial, Helvetica, sans-serif;
@@ -1210,6 +1263,7 @@ a {
     margin: 5px 0;
     padding: 5px 15px;
   }
+<<<<<<< HEAD
 
 .categories {
     padding: 2px; /* Поля вокруг текста ссылки */
@@ -1222,3 +1276,15 @@ a {
     color: white; /* Новый цвет текста */
 }
 
+=======
+.comment_content {
+	color: #555;
+	background-color:#E0FFFF;
+	text-align: justify;
+	text-indent: 1em;
+	outline: 1px solid #7662aec4; /* цвет рамки */
+    border: 3px solid #fff; /* Белая рамка */
+    border-radius: 15px; /* Радиус скругления */
+    margin: 5px;
+}
+>>>>>>> 18099bacf70d915ebf939317c3783ecd896cfe28

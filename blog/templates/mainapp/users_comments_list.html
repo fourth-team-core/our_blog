@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    My Comments
+{% endblock title %}
+
+{% block header %}
+    {% include "header.html" %}
+{% endblock header %}
+
+{% block content %}
+    <h1 class="post__users-posts-header">My comments list</h1>
+    
+    {% for comment in user_comments %}
+        <div class="comment_content">
+            <a href="{{ comment.post.get_absolute_url }}">Post: {{ comment.post }}</a>
+            <br>
+            <h5> Comment text:</h5>
+            <p>{{ comment.content }}</p>
+            <br>
+            Left at: {{ comment.created_at|date:"d M Y H:i" }}
+            <br><br><br>
+        </div>
+    {% endfor %}
+        
+{% endblock content %}

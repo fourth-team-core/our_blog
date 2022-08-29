@@ -6,25 +6,60 @@
 {% endblock %}
 
 {% block content %}
-<div class="bloger-content">
-
-    <div class="blog-box1">
-        <div class="blog-box-image">
-            <img src="{% static "images/post_03.png" %}" title="preview" alt="post image"/>
+    <div class="bloger-content">
+        <div class="blog-box1">
+            <div class="blog-box-image">
+                <img src="{% static "images/post_03.png" %}" title="preview" alt="post image"/>
+            </div>
+            <div class="post__content">
+                <h2>{{ post.title }}</h2>
+                <h6>Категория: <a href=""> {{ post.category }}</a></h6>
+                {% include "mainapp/inc-tags.html" %}
+                <p>
+                    {{ post.content }}
+                </p>
+                <ul class="post__footer">
+                    <li>Создан: {{ post.created_at }}</li>
+                    <li>Автор: <a href="#">{{ post.author }}</a></li>
+                </ul>
+            </div>
         </div>
-        <div class="post__content">
-            <h2>{{ post.title }}</h2>
-            <h6>Категория: <a href=""> {{ post.category }}</a></h6>
-            {% include "mainapp/inc-tags.html" %}
-            <p>
-                {{ post.content }}
-            </p>
-            <ul class="post__footer">
-                <li>Создан: {{ post.created_at }}</li>
-                <li>Автор: <a href="#">{{ post.author }}</a></li>
-            </ul>
-        </div>
+        <div class="clear"></div>
     </div>
-    <div class="clear"></div>
-</div>
+
+    {% block comments %}
+        <div class="bloger-content">
+            <div class="blog-box1">
+
+                <form class="post__content" method="POST">
+                    {% csrf_token %}
+                    <br>
+                    Your comment: 
+                    <br>{{ form.content }}
+                    <br>
+                    <button class="submit post__create-form__save-btn">Reply</button>
+                </form>
+                
+                {% if comments %}
+                    <br><br>
+                    <h5 class="post__comments-header">Comment{{ comments.count|pluralize }}: {{ comments.count }}</h5>
+                        {% for comment in comments %}
+                            {% if comment.active %}
+                            <div class="post__comment-block">
+                                <div class="post__comment-block__author">
+                                    Author: {{ comment.author }}
+                                </div>
+                                <div>
+                                    {{ comment.content }}
+                                </div>
+                                <div class="post__comment-block__date">
+                                    Created at: {{ comment.created_at|date:"d M Y H:i" }}
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    {% endblock comments %}
 {% endblock %}
