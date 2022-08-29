@@ -4,6 +4,9 @@
 <form method="post" class="post__create-form">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Save" class="post__create-form__save-btn">
+    <div class="confirmation-buttons">
+        <div><a href="{% url 'authapp:profile' %}"><= Back to my profile</a></div>
+        <div><button type="submit" class="post__create-form__save-btn">Create post</button></div>
+    </div>
 </form>
 {% endblock %}
