@@ -1263,7 +1263,7 @@ a {
     margin: 5px 0;
     padding: 5px 15px;
   }
-<<<<<<< HEAD
+
 
 .categories {
     padding: 2px; /* Поля вокруг текста ссылки */
@@ -1276,7 +1276,7 @@ a {
     color: white; /* Новый цвет текста */
 }
 
-=======
+
 .comment_content {
 	color: #555;
 	background-color:#E0FFFF;
@@ -1287,4 +1287,4 @@ a {
     border-radius: 15px; /* Радиус скругления */
     margin: 5px;
 }
->>>>>>> 18099bacf70d915ebf939317c3783ecd896cfe28
+
