@@ -83,7 +83,7 @@ class PostDetailView(LoginRequiredMixin, DetailView):
         self.object = self.get_object()
         context = super().get_context_data(**kwargs)
 
-        post = Post.objects.filter(id=self.kwargs['pk'])[0]
+        post = Post.objects.filter(id=self.kwargs['pk']).first()
         comments = post.comment_set.all()
 
         context['post'] = post
@@ -100,7 +100,7 @@ class PostDetailView(LoginRequiredMixin, DetailView):
 
             form = CommentForm()
             context['form'] = form
-            return HttpResponseRedirect(reverse('mainapp:post-detail', args=str(post.pk)))
+            return HttpResponseRedirect(reverse('mainapp:post-detail', kwargs={'pk': post.pk}))
         return self.render_to_response(context=context)
 
 
