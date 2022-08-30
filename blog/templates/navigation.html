@@ -1,18 +1,15 @@
+{% load category %}
 <div class="header-nav1">
     <div class="wrap">
         <ul>
             <li class="current"><a href="{% url 'home' %}">Все публикации</a></li>
-            <li><a href="single.html">Дизайн</a></li>
-            <li><a href="single.html">Веб-разработка</a></li>
-            <li><a href="single.html">Мобильная разработка</a></li>
-            <li><a href="single.html">Маркетинг</a></li>
-            <li><a href="support.html">Техническая Поддержка</a></li>
+            {% list_category %}
         </ul>
         <div class="search-bar">
             <ul>
                 <li>
                     <form action="{% url 'mainapp:search-results' %}">
-                        <input type="text" name="q">
+                        <input type="text" name="q" placeholder="search">
                         <!-- <input type="submit" value=""/> -->
                     </form>
                 </li>

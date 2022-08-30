@@ -19,9 +19,6 @@ class BlogUserSignUpView(CreateView):
 class BlogUserLoginView(LoginView):
     template_name = "authapp/login.html"
 
-    def get_success_url(self):
-        return reverse("authapp:profile")
-
 
 class BaseUserProfileView(LoginRequiredMixin, TemplateView):
     login_url = reverse_lazy("authapp:login")
