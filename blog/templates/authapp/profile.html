@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-    Profile page
+    Профиль
 {% endblock title %}
 
 {% block messages %}
@@ -18,16 +18,16 @@
                 <img class="profile__avatar" src="{% static 'images/default_avatar.png' %}" alt="">
             {% endif %}
             <div class="profile__data">
-                <h4>Welcome to your profile {{ user.get_full_name }}!</h4>
+                <h4>Добро пожаловать в ваш профиль {{ user.get_full_name }}!</h4>
                 <ul>
                     <li><span class="profile__data-titles">Username:</span> {{ user.username }}</li>
                     <li><span class="profile__data-titles">Name:</span> {{ user.get_full_name }}</li>
                     <li><span class="profile__data-titles">Email:</span> {{ user.email }}</li>
-                    <li><span class="profile__data-titles">Joined at:</span> {{ user.date_joined }}</li>
-                    <li><span class="profile__data-titles">Posts created:</span> <a href="{% url "mainapp:user-posts" %}">My posts</a></li>
-                    <li><span class="profile__data-titles">Comments history:</span><a href="{% url "mainapp:user-comments" %}">My comments</a></li>
+                    <li><span class="profile__data-titles">Дата регистрации:</span> {{ user.date_joined }}</li>
+                    <li><span class="profile__data-titles">История поств:</span> <a href="{% url "mainapp:user-posts" %}">Мои посты</a></li>
+                    <li><span class="profile__data-titles">История комментариев:</span><a href="{% url "mainapp:user-comments" %}">Мои комментарии</a></li>
                 </ul>
-                <p><a href="{% url 'authapp:password-change' %}">Change password</a></p>
+                <p><a href="{% url 'authapp:password-change' %}">Смена пароля</a></p>
                 <br/>
                 <hr/>
                 <div class="profile__cms">

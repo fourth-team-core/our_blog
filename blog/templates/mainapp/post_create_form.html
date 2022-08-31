@@ -5,8 +5,8 @@
     {% csrf_token %}
     {{ form.as_p }}
     <div class="confirmation-buttons">
-        <div><a href="{% url 'authapp:profile' %}"><= Back to my profile</a></div>
-        <div><button type="submit" class="post__create-form__save-btn">Create post</button></div>
+        <div><a href="{% url 'authapp:profile' %}"><= Вернуться к моему профилю</a></div>
+        <div><button type="submit" class="post__create-form__save-btn">Создать пост</button></div>
     </div>
 </form>
 {% endblock %}

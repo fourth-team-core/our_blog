@@ -34,7 +34,7 @@
                 <form class="post__content" method="POST">
                     {% csrf_token %}
                     <br>
-                    Your comment: 
+                    Ваш коммпентарий:
                     <br>{{ form.content }}
                     <br>
                     <button class="submit post__create-form__save-btn">Reply</button>
@@ -47,13 +47,13 @@
                             {% if comment.active %}
                             <div class="post__comment-block">
                                 <div class="post__comment-block__author">
-                                    Author: {{ comment.author }}
+                                    Автор: {{ comment.author }}
                                 </div>
                                 <div>
                                     {{ comment.content }}
                                 </div>
                                 <div class="post__comment-block__date">
-                                    Created at: {{ comment.created_at|date:"d M Y H:i" }}
+                                    Дата создания: {{ comment.created_at|date:"d M Y H:i" }}
                                 </div>
                             </div>
                             {% endif %}
