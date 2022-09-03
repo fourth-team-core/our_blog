@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Login
+    Регистрация
 {% endblock title %}
 
 {% block messages %}
@@ -13,12 +13,15 @@
         <form method="POST">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit">Login</button>
+            <br/>
+            <button type="submit">Войти</button>
         </form>
         <br/>
-        <div>You can  <a href="{% url 'authapp:signup' %}">signup</a> if you don't have an account</div>
+        <div>Вы можете <a href="{% url 'authapp:signup' %}">Зарегистрироваться</a> ,если у вас еще нет аккаунта</div>
         <br>
-        <div>Forgot your password? Not a problem: you can always <a href="{% url 'authapp:password-reset' %}">reset</a> it!</div>
+        <div>Заыли пароль? Ничего страшного: вы всегда можете <a href="{% url 'authapp:password-reset' %}">сбросить</a> его!</div>
+        <br>
+        Вы можете зайти с помощью аккаунта одной из соцсетей:
     </div>
     <br/>
     <a href="{% url 'social:begin' 'vk-oauth2' %}?next=/" class="btn btn-primary" role="button">

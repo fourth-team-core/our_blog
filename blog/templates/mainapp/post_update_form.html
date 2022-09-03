@@ -5,8 +5,8 @@
     {% csrf_token %}
     {{ form.as_p }}
     <div class="confirmation-buttons">
-        <div><a href="{% url 'mainapp:user-posts' %}"><= Back to my posts</a></div>
-        <div><button type="submit" class="post__create-form__save-btn">Update</button></div>
+        <div><a href="{% url 'mainapp:user-posts' %}"><= Вернуться к моим постам</a></div>
+        <div><button type="submit" class="post__create-form__save-btn">Редактировать</button></div>
     </div>
 </form>
 {% endblock %}

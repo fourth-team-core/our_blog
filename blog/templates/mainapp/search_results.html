@@ -3,7 +3,7 @@
 {% block content %}
 
     {% if posts %}
-        <p>Total result: {{ posts|length }}</p>
+        <p>Найдено результатов: {{ posts|length }}</p>
         <br>
         {% for post in posts %}
             <a href="{{ post.get_absolute_url }}"><p>{{ post.title }}</p></a>

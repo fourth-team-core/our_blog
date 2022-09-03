@@ -7,13 +7,13 @@
         </div>
         <div class="login">
             {% if user.is_authenticated %}
-                <p>Hi {{ user.get_full_name }}!</p>
-                <a href="{% url 'authapp:profile' %}">profile</a> |
-                <a href="{% url 'authapp:logout' %}">logout</a>
+                <p> Добро пожаловать {{ user.get_full_name }}!</p>
+                <a href="{% url 'authapp:profile' %}">Профиль</a> |
+                <a href="{% url 'authapp:logout' %}">Выйти</a>
             {% else %}
-                <p>You are not logged in</p>
-                <a href="{% url 'authapp:login' %}">login</a> |
-                <a href="{% url 'authapp:signup' %}">signup</a>
+                <p>Вы не вошли в систему:</p>
+                <a href="{% url 'authapp:login' %}">Войти</a> |
+                <a href="{% url 'authapp:signup' %}">Зарегистрироваться</a>
             {% endif %}
         </div>
     </div>

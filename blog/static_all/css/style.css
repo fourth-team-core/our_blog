@@ -1273,3 +1273,38 @@ a {
     border-radius: 15px; /* Радиус скругления */
     margin: 5px;
 }
+.comment{
+     /*border: 1px solid #666;*/
+     margin: 10px;
+     padding: 10px;
+     font-family: Tahoma;
+     font-size: 12px;
+     border-radius: 4px;
+     box-shadow: 2px 2px 2px #999;
+     width: 70%;
+}
+
+*{transition: all 0.3s linear;}
+
+.hidden{
+  font-size: 0;
+}
+
+.like{
+  font-family: 'Open Sans';
+}
+
+.like-toggle{
+  outline:none;
+  box-shadow:none;
+  border: none;
+  width: 40px;
+  height: 30px;
+  font-size: 1.3em;
+  border-radius: 100px;
+}
+
+.like-active.basic{
+  background: #7CC576;
+  color: white;
+}

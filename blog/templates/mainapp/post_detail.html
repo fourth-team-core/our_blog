@@ -21,6 +21,10 @@
                 <ul class="post__footer">
                     <li>Создан: {{ post.created_at }}</li>
                     <li>Автор: <a href="#">{{ post.author }}</a></li>
+                    <!-- LikeBtn.com BEGIN -->
+                    <span class="likebtn-wrapper" data-theme="github" data-lang="ru" data-identifier="item_1"></span>
+                    <script>(function(d,e,s){if(d.getElementById("likebtn_wjs"))return;a=d.createElement(e);m=d.getElementsByTagName(e)[0];a.async=1;a.id="likebtn_wjs";a.src=s;m.parentNode.insertBefore(a, m)})(document,"script","//w.likebtn.com/js/w/widget.js");</script>
+                    <!-- LikeBtn.com END -->
                 </ul>
             </div>
         </div>
@@ -34,7 +38,7 @@
                 <form class="post__content" method="POST">
                     {% csrf_token %}
                     <br>
-                    Your comment: 
+                    Ваш комментарий:
                     <br>{{ form.content }}
                     <br>
                     <button class="submit post__create-form__save-btn">Reply</button>
@@ -42,19 +46,24 @@
                 
                 {% if comments %}
                     <br><br>
-                    <h5 class="post__comments-header">Comment{{ comments.count|pluralize }}: {{ comments.count }}</h5>
+                    <h5 class="post__content">Comment{{ comments.count|pluralize }}: {{ comments.count }}</h5>
                         {% for comment in comments %}
                             {% if comment.active %}
-                            <div class="post__comment-block">
-                                <div class="post__comment-block__author">
-                                    Author: {{ comment.author }}
+                            <div class="post__content">
+                                <div class="post__content">
+                                    Автор: {{ comment.author }}
                                 </div>
                                 <div>
                                     {{ comment.content }}
                                 </div>
-                                <div class="post__comment-block__date">
-                                    Created at: {{ comment.created_at|date:"d M Y H:i" }}
+                                <div class="post__content">
+                                    Дата создания: {{ comment.created_at|date:"d M Y H:i" }}
                                 </div>
+                                <div class='like'>
+                                    <button class='like-toggle basic'>♥</button>
+                                    <span class='hidden'>Like</span>
+                                </div>
+                                <br><br>
                             </div>
                             {% endif %}
                         {% endfor %}
